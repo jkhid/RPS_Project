@@ -14,12 +14,22 @@ function playRound() {
     const computerSelection = getComputerChoice();
     console.log(computerSelection)
 
+// Rock portion
     if (playerSelection === "rock" && computerSelection === "paper") {
         alert("You lose! Paper beats rock!")
     } else if (playerSelection === "rock" && computerSelection === "scissors") {
         alert("You win! Rock beats Scissors!")
     } else if (playerSelection === "rock" && computerSelection === "rock") {
         alert("Tie! Rock equals Rock!")
+    }
+
+// Paper portion
+    if (playerSelection === "paper" && computerSelection === "rock") {
+        alert("You Win! Paper beats rock!")
+    } else if (playerSelection === "paper" && computerSelection === "scissors") {
+        alert("You lose! Scissors beats paper!")
+    } else if (playerSelection === "paper" && computerSelection === "paper") {
+        alert("Tie! Paper equals Paper!")
     }
 }
 playRound()
