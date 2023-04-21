@@ -31,5 +31,14 @@ function playRound() {
     } else if (playerSelection === "paper" && computerSelection === "paper") {
         alert("Tie! Paper equals Paper!")
     }
+
+// Scissors portion
+    if (playerSelection === "scissors" && computerSelection === "rock") {
+        alert("You lose! Rock beats Scissors!")
+    } else if (playerSelection === "scissors" && computerSelection === "paper") {
+        alert("You win! Scissors beats paper!")
+    } else if (playerSelection === "scissors" && computerSelection === "scissors") {
+        alert("Tie! Scissors equals Scissors!")
+    }    
 }
 playRound()
