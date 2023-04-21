@@ -1,6 +1,10 @@
+let playerScore = 0;
+let computerScore = 0;
+
 // Create an array to store option values
 // Create function that randomly selects value from array
 const choices = ["rock", "paper", "scissors"];
+
 function getComputerChoice(){
     const computerChoice = choices[Math.floor(Math.random() * choices.length)];
     return computerChoice;
@@ -16,29 +20,53 @@ function playRound() {
 
 // Rock portion
     if (playerSelection === "rock" && computerSelection === "paper") {
-        alert("You lose! Paper beats rock!")
+        computerScore += 1;
+        alert(`Computer chose Paper! ${playerScore}-${computerScore}`)
     } else if (playerSelection === "rock" && computerSelection === "scissors") {
-        alert("You win! Rock beats Scissors!")
+        playerScore += 1;
+        alert(`Computer chose Scissors! ${playerScore}-${computerScore}`)
     } else if (playerSelection === "rock" && computerSelection === "rock") {
-        alert("Tie! Rock equals Rock!")
+        alert(`Computer chose Rock! ${playerScore}-${computerScore}`)
     }
 
 // Paper portion
     if (playerSelection === "paper" && computerSelection === "rock") {
-        alert("You Win! Paper beats rock!")
+        playerScore += 1;
+        alert(`Computer chose Rock! ${playerScore}-${computerScore}`)
     } else if (playerSelection === "paper" && computerSelection === "scissors") {
-        alert("You lose! Scissors beats paper!")
+        computerScore += 1;
+        alert(`Computer chose Scissors! ${playerScore}-${computerScore}`)
     } else if (playerSelection === "paper" && computerSelection === "paper") {
-        alert("Tie! Paper equals Paper!")
+        alert(`Computer chose Paper! ${playerScore}-${computerScore}`)
     }
 
 // Scissors portion
     if (playerSelection === "scissors" && computerSelection === "rock") {
-        alert("You lose! Rock beats Scissors!")
+        computerScore += 1;
+        alert(`Computer chose Rock! ${playerScore}-${computerScore}`)
     } else if (playerSelection === "scissors" && computerSelection === "paper") {
-        alert("You win! Scissors beats paper!")
+        playerScore += 1;
+        alert(`Computer chose Paper! ${playerScore}-${computerScore}`)
     } else if (playerSelection === "scissors" && computerSelection === "scissors") {
-        alert("Tie! Scissors equals Scissors!")
+        alert(`Compute chose Scissors! ${playerScore}-${computerScore}`)
     }    
+} 
+
+// Create game function
+// Loop the game to play 5 times
+// Keep score of player and computer
+// Report a winner at the end
+function game() {
+    for (let i = 0; i < 5; i++) {
+        playRound(i);
+    }
+    if (playerScore > computerScore) {
+        alert(`You won the game! ${playerScore}-${computerScore}`);
+    } else if (playerScore < computerScore) {
+        alert(`You lost the game... ${playerScore}-${computerScore}`);
+    } else {
+        alert(`The game has tied. ${playerScore}-${computerScore}`)
+    }
 }
-playRound()
+
+game()
