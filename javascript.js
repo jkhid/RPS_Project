@@ -13,60 +13,72 @@ function getComputerChoice(){
 // Create a function that plays a round of RPS
 // The function takes in two parameters, player and computer
 // Return a string that declares a winner/loser
-function playRound() {
-    const playerSelection = prompt("Enter Rock, Paper, or Scissors").toLowerCase();
-    const computerSelection = getComputerChoice();
-    console.log(computerSelection)
+const results = document.querySelector(".text");
+function playRound(playerSelection, computerSelection) {
 
 // Rock portion
     if (playerSelection === "rock" && computerSelection === "paper") {
         computerScore += 1;
-        alert(`Computer chose Paper! ${playerScore}-${computerScore}`)
+        results.innerHTML = `Computer chose Paper! ${playerScore}-${computerScore}`
     } else if (playerSelection === "rock" && computerSelection === "scissors") {
         playerScore += 1;
-        alert(`Computer chose Scissors! ${playerScore}-${computerScore}`)
+        results.innerHTML = `Computer chose Scissors! ${playerScore}-${computerScore}`
     } else if (playerSelection === "rock" && computerSelection === "rock") {
-        alert(`Computer chose Rock! ${playerScore}-${computerScore}`)
+        results.innerHTML= `Computer chose Rock! ${playerScore}-${computerScore}`
     }
 
 // Paper portion
     if (playerSelection === "paper" && computerSelection === "rock") {
         playerScore += 1;
-        alert(`Computer chose Rock! ${playerScore}-${computerScore}`)
+        results.innerHTML = `Computer chose Rock! ${playerScore}-${computerScore}`
     } else if (playerSelection === "paper" && computerSelection === "scissors") {
         computerScore += 1;
-        alert(`Computer chose Scissors! ${playerScore}-${computerScore}`)
+        results.innerHTML = `Computer chose Scissors! ${playerScore}-${computerScore}`
     } else if (playerSelection === "paper" && computerSelection === "paper") {
-        alert(`Computer chose Paper! ${playerScore}-${computerScore}`)
+        results.innerHTML = `Computer chose Paper! ${playerScore}-${computerScore}`
     }
 
 // Scissors portion
     if (playerSelection === "scissors" && computerSelection === "rock") {
         computerScore += 1;
-        alert(`Computer chose Rock! ${playerScore}-${computerScore}`)
+        results.innerHTML = `Computer chose Rock! ${playerScore}-${computerScore}`
     } else if (playerSelection === "scissors" && computerSelection === "paper") {
         playerScore += 1;
-        alert(`Computer chose Paper! ${playerScore}-${computerScore}`)
+        results.innerHTML = `Computer chose Paper! ${playerScore}-${computerScore}`
     } else if (playerSelection === "scissors" && computerSelection === "scissors") {
-        alert(`Compute chose Scissors! ${playerScore}-${computerScore}`)
+        results.innerHTML = `Compute chose Scissors! ${playerScore}-${computerScore}`
     }    
+
+    if (playerScore === 5 || computerScore === 5) {
+        endgame();
+    }
 } 
 
-// Create game function
-// Loop the game to play 5 times
-// Keep score of player and computer
-// Report a winner at the end
-function game() {
-    for (let i = 0; i < 5; i++) {
-        playRound(i);
-    }
-    if (playerScore > computerScore) {
-        alert(`You won the game! ${playerScore}-${computerScore}`);
-    } else if (playerScore < computerScore) {
-        alert(`You lost the game... ${playerScore}-${computerScore}`);
+function endgame() {
+    if (playerScore === 5) {
+        results.innerHTML=`You won the game! ${playerScore}-${computerScore}`;
+    } else if (computerScore === 5) {
+        results.innerHTML=`You lost the game... ${playerScore}-${computerScore}`;
     } else {
-        alert(`The game has tied. ${playerScore}-${computerScore}`)
+        results.innerHTML=`The game has tied. ${playerScore}-${computerScore}`;
     }
+
+    playerScore = 0;
+    computerScore = 0;
 }
 
-game()
+// Event Listeners for RPS buttons
+
+const rock = document.querySelector(".rock ");
+const paper = document.querySelector(".paper");
+const scissors = document.querySelector(".scissors");
+
+rock.addEventListener("click", function() {
+    playRound("rock", getComputerChoice())
+});
+paper.addEventListener("click", function() {
+    playRound("paper", getComputerChoice())
+});
+scissors.addEventListener("click", function() {
+    playRound("scissors", getComputerChoice())
+});
